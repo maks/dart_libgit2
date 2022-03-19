@@ -5,8 +5,11 @@ import 'package:ffi/ffi.dart';
 import 'libgit2_generated_bindings.dart';
 
 class LibGit2 {
+  String libPath;
+  LibGit2([this.libPath = '/usr/lib/x86_64-linux-gnu/libgit2.so']);
+
   String version() {
-    final git2 = libgit2(DynamicLibrary.open('/usr/lib/x86_64-linux-gnu/libgit2.so'));
+    final git2 = libgit2(DynamicLibrary.open(libPath));
 
     final majorPtr = calloc<Int32>();
     final minorPtr = calloc<Int32>();
